@@ -5,7 +5,7 @@ const VehicleModule = require("./vehicle")
 let v = new VehicleModule.Vehicle("Mecury", "Sedan", "1965", "color", "mileage");
 console.log(v.make);
 
-class Car extends VehicleModule {
+class Car extends VehicleModule.Vehicle {
     constructor(make, model, year, color, mileage) {
         super(make, model, year, color, mileage);
         this.maximumPassengers = 5;
@@ -18,8 +18,8 @@ class Car extends VehicleModule {
 
     loadPassenger(num) {
         if (this.passenger + num < this.maximumPassengers) {
+            console.log(`You are welcome to get in the ${this.make} ${this.model}`);
             return this.passenger += num;
-            console.log(`You\'re welcome to get in the ${this.make} ${this.model}`);
         } else {
             console.log(`${this.make} ${this.model} does not have enough room.`);
         }
@@ -27,12 +27,12 @@ class Car extends VehicleModule {
 
     start() {
         if (this.fuel > 0) {
-            return this.started = true;
             console.log('Vehicle is on!');
+            return this.started = true;
         }
     }
 
-    checkForService(mileage) {
+    checkForService() {
         if (this.mileage > 30000) {
             return this.scheduleService = true;
         }
